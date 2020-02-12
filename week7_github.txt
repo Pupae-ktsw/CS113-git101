@@ -1,0 +1,40 @@
+--- week7 GITHUB ---
+มีไว้สำหรับทำงานโปรเจคร่วมกับผู้อื่น 
+บันทึกประวัติการแก้ไขไฟล์ โค้ด รูปภาพ หรือวีดีโอ animation ต่างๆ
+วิธีเอาลง github
+1. create new folder (which is working directory)
+
+2. In folder right click -> Git Bash Here OR open msys2 and type working directory
+
+3. type "git init" ทุกครั้งที่มีโฟลเดอร์ใหม่ (.git hidden folder appear) ***ห้ามแตะต้องเด็ดขาด
+
+4. ลากโฟลเดอร์งานมาใส่ใน visual 
+5. "git status" ดูว่ามีไฟล์ไหนโดนแก้ หรือลบบ้าง
+
+6. "git add ชื่อ.สกุลไฟล์ " เอาไฟล์ขึ้น stage and check status
+
+7. ชื่อ เมล "git config --global user.name "Your Name"
+"git config --global user.email "youmail@ku.th"
+**global for private computer not public**
+**ข้อนี้ ทำครั้งเดียว**
+
+8. Commit file (จุดเซฟ) "git commit -m "Add (พิมพ์ไรก็ได้)ตั้งชื่อ ดีเทลอะไรก็ว่าไป" 
+** ห้ามลืม -m เด็ดขาด **
+
+9. ทำไปเรื่อยๆ หากมีไฟล์เพิ่ม และหมั่นคอยเช็ค status
+
+10. "git log --all --decorate --oneline --graph" ดูจุดเซฟทั้งหมด (git log adog)
+
+11. go to github.com
+
+12. connect folder ในเครื่องเรากับ github "git remote add origin (url github ของเรา)"
+
+13. "git push -u origin master" ส่งไฟล์และประวัติไปให้ github
+
+* ในเคสที่ต้องการแบบเก่า *
+"git checkout (commit id (เลขฐาน16)) ชื่อ.สกุลไฟล์
+* อย่าลืม check status ด้วยนะ *
+
+14. "git clone (git url)"  ใช้สำหรับตอเนปลี่ยนเครื่อง ไม่มีไฟล์นั้นแล้ว หรืออยากจะมาทำงานต่อก็ใช้คำสั่งนี้ได้เลย
+
+--------------------------------------------------------THE END-------------------------------------------------------------------
