@@ -1,0 +1,96 @@
+Week 9 Github Branch & Merge
+
+สร้าง branch เพื่อไม่ให้งานปนกัน สามารถแยกส่วนได้ และนำงานทั้งหมดมารวมกันได้ในภายหลัง
+
+---how to create branch : ---
+1. clone git  -> "git clone (url git) (ตามด้วยชื่อโฟลเดอร์ที่โคลน จะใส่หรือไม่ก็ได้)"
+
+2. สร้าง branch "git branch (ชื่อ branch)"
+
+3. git branch เช็คว่ามี branch อะไรบ้าง สาขาที่อยู่ปัจจุบันจะมี (*) นำหน้า
+
+4. เปลี่ยน branch "git checkout (ชื่อ branch ที่ต้องการจะไป)"
+
+
+
+--- แบบยังไม่มี conflict ใดๆ merge ได้ perfect : ---
+5. เพิ่มไฟล์ใน branch ที่สอง และเพิ่มไฟล์ใหม่ใน branch แรกด้วย (don't forget to save file!!!)
+(สมมติ master1.txt ใน master (สาขาแรก) และ feature1.txt ใน feature (สาขาสอง) )
+
+6. git status // git add // git commit ทั้งสองไฟล์ (ทำไฟล์ไหนก็อยู่ใน branch นั้น)
+** ถ้า git commit ไม่ได้  (ไม่ใช่เครื่องส่วนตัว ห้ามใส่ global) ให้สั่ง " git config user.name "YourName" "
+และ " git config user.email "urmail@example.com" " เสร็จแล้วก็ commit ใหม่อีกรอบ
+
+7. "git log adog" จะเห็นว่าบรรทัดล่าสุด (บนสุด) จะเป็น head->feature เป็น activity ล่าสุดที่เราทำ 
+** ส่วนที่มี origin คือ Push ไปใน github แล้ว
+
+8. ใน master ต้องไม่มีไฟล์ที่อยู่ใน feature (เพราะยังไม่ได้ merge)
+
+9. push branch master and feature ขึ้น github (ระหว่างนั้นให้ git log adog คอยสังเกต tree ความเปลี่ยนแปลง)
+ใช้คำสั่ง "git push origin (ชื่อ branch) " 
+** ตอน push ต้องอยู่ branch เดียวกับที่จะ push **
+จะมีป็อปอัพขึ้นมาให้ใส่ username password of github
+
+10. ตอนจะ Merge ให้ไปที่ branch นั้นก่อน ถ้าจะรวมที่ master ให้พิมพ์ "git merge feature" ที่ branch master
+** git merge <ชื่อ branch ที่อยากเอามารวม>
+
+11. "git status" เช็คว่าไม่มีอะไร commit แล้ว
+
+12. "git log adog" สังเกตจาก tree กลายเป็น graph เพราะมี cycle 
+
+13. "git push origin master" อีกรอบ นำสาขาที่เป็นปลายทางpush อีกรอบนึงเป็นการอัพเดตตอนที่รวมแล้วเรียบร้อย
+** branch master จะมี feature1 แต่ branch feature จะไม่มี master1
+-------------------------------merge เสร็จสมบูรณ์---------------------------------------------------
+
+--- pull แบบไม่มี conflict : ---
+14. git pull อัพเดตงานใน Local ที่โคลนมาแล้ว ส่วน git clone คือ copy ทั้ง repository
+** "git pull origin master"
+
+
+
+--- merge แบบมี conflict : ---
+(สร้าง สาขาใหม่ชื่อ feature2)
+แก้ไขไฟล์เดียวกัน บรรทัดเดียวกัน ในเวลาเดียวกัน แต่ต่าง branch เวลารวมจะมีปัญหา 
+
+15. แก้ไขไฟล์บี ในทั้งสองสาขา บรรทัดเดียวกัน กดเซฟ แล้ว add commit ให้เรียบร้อย (ระหว่างนั้น log adog ด้วย)
+
+16. รวม feature2 ใน master "git merge feature2"
+** ตอน merge ยังไม่ต้อง Push ก่อนก็ได้
+** จะเกิด conflict ขึ้น ใน visual จะมีให้เลือกว่าจะเอาข้อมูลใน branch อันไหน เสร็จแล้วเซฟด้วย
+16.1 git status เช็คจะเห็นว่ามันกำลัง merge ซึ่งไม่ควรเพิ่มไฟล์อะไรลงไปใหม่ ควรรวมให้เรียบร้อยก่อน
+
+17. commit การ merge นั้น (ใน master branch) => git add ไฟล์ที่แก้ และ commit จากนั้น log adog
+
+18. git push orgin master และ log adog (ไม่ต้อง Push feature2 เพราะ merge รวมไปกับ master แล้ว)
+(แต่เราจะไม่เห็น branch feature2 ใน github)
+
+--- pull แบบมี conflict : ---
+user1 &2 ต้องการแก้ไขไฟล์พร้อมกัน อีกคน Push และcommit เรียบร้อย
+
+ขึ้นเครื่องใหม่ git bash here 
+19. cd git102 แล้ว Pull มา จากนั้น log adog
+
+20. แก้ไขไฟล์ new-1 ใน git102
+
+21. git status //add // commit // log adog
+
+22. git push origin master // log adog
+
+เครื่องเก่า
+23. แก้ไขไฟล์ new-1 บรรทัดเดียวกันกับเครื่องใหม่ save
+
+24. git status // add // status // commit // log adog
+** log adog จะเห็นว่ามีกิ่งแตกออกมาใหม่(ไม่เชื่อมกับ Origin master)  ต้อง pull มาก่อนค่อย push
+** ต้องสร้าง commit ก่อนค่อย pull เป็นการเซฟของเรา ถ้าpull ก่อนสิ่งที่เราแก้จะหาย
+
+25. "git pull origin master" มีปัญหาเกิดขึ้น ก็เลือกเอาใน visual ว่าจะเลือกข้อมูลตัวไหน แล้วเซฟ
+จากนั้น git status // add // status // commit // log adog 
+
+26. "git push origin master" // log adog
+
+เครื่องใหม่ git102
+27. "git pull origin master" จะไม่มี conflict เกิดขึ้น bc user1 แก้เรียบร้อยแล้ว
+
+------------------------------------------------------- THE END ---------------------------------------------------
+
+
